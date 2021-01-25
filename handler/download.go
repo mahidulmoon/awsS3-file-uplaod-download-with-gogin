@@ -12,9 +12,9 @@ import (
 
 func HandlerDownload() gin.HandlerFunc{
 	return func (c *gin.Context){
-		//filename := strings.Replace(c.URL.Path, "/get/", "", 1)
+
 		filename := c.Param("filename")
-		f, err := os.Create(filename)
+		f, err := os.Create("./files/"+filename)
 		if err != nil {
 			c.JSON(http.StatusBadRequest,gin.H{
 				"message" : "Something went wrong creating the local file",
